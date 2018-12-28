@@ -1,5 +1,5 @@
 node {    
-    docker.image('docker/compose:1.21.0').inside { 
+    docker.image('docker/compose:1.21.0').withRun('--entrypoint /bin/bash') { c ->
       checkout scm  
       withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1') {
             sh 'docker-compose up --build'
