@@ -3,15 +3,11 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-          checkout([
-            $class: 'GitSCM',
-            branches: [[name: '*/master']], 
-            extensions: scm.extensions + [[$class: 'CleanCheckout']],
-            userRemoteConfigs: scm.userRemoteConfigs
-          ])
+        checkout scm
       }
     }
-    stage('Build') {      
+    stage('Build') {
+      def GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
       steps {
         withDockerRegistry(credentialsId: 'docker-hub', url: 'http://hub.docker.com/u/zeppelinops') {
           sh 'docker-compose up --build'
