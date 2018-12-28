@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('Build') {
+    stage('Test') {
       steps {
         script {
           def GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
