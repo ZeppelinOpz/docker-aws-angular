@@ -1,14 +1,8 @@
 version: '3.5'
 services: 
-  heptio-v2-8-2:
+  aws-angular-v10:
     build:
-      context: v2-8-2/.
+      context: v10/.
       network: host
-    image: kubectl-helm-heptio:2.8.2
+    image: aws-angular:10
     command: ls -la /usr/local/bin
-  heptio-v2-9-1:
-    build:
-      context: v2-9-0/.
-      network: host
-    image: kubectl-helm-heptio:2.9.0
-    command: ls -la /usr/local/bin        
