@@ -1,5 +1,5 @@
 pipeline {
-  agent any
+  agent { docker 'docker/compose:1.21.0' } 
   stages {
     stage('Checkout') {
       steps {
