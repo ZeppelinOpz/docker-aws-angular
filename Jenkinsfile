@@ -2,7 +2,7 @@ pipeline {
  agent {
         docker { 
           image 'docker/compose:1.21.0'
-          args  '--entrypoint /bin/cat'
+          args  '--entrypoint /bin/sh'
        }
 
 }
