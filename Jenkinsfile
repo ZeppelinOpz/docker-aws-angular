@@ -8,6 +8,10 @@ pipeline {
   stages {
     stage('Build') {
       steps {
+        script {
+          def GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+          sh "echo ${GIT_COMMIT}"
+        }
         withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {             
           sh 'docker-compose up --build'
           sh 'docker tag aws-angular:10 ugurkavcu/aws-angular:latest'
