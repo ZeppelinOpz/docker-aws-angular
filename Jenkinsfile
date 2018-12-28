@@ -1,7 +1,11 @@
 pipeline {
  agent {
-                docker { image 'docker/compose:1.21.0' }
-            }
+        docker { 
+          image 'docker/compose:1.21.0'
+          args  '--entrypoint /bin/cat'
+       }
+
+}
   stages {
     stage('Checkout') {
       steps {
