@@ -1,7 +1,7 @@
 pipeline {
   agent { 
     docker { 
-      image 'docker/compose:1.21.0'
+      image 'ugurkavcu/angular-aws:latest'
       args '--entrypoint=""'
     }
   }
@@ -14,6 +14,7 @@ pipeline {
           sh 'docker tag aws-angular:10 zeppelinops/aws-angular:10'
           sh 'docker push zeppelinops/aws-angular:latest'
           sh 'docker push zeppelinops/aws-angular:10'
+          sh 'ls'
         }
       }
     }
