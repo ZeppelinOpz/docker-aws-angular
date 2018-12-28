@@ -1,5 +1,5 @@
 pipeline {
-  agent { docker { image 'docker/compose' } }
+  agent { docker { image 'alpine:3.8' } }
   stages {
     stage('Checkout') {
       steps {
