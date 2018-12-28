@@ -14,7 +14,6 @@ pipeline {
           sh 'docker tag aws-angular:10 zeppelinops/aws-angular:10'
           sh 'docker push zeppelinops/aws-angular:latest'
           sh 'docker push zeppelinops/aws-angular:10'
-          sh 'ls -lah'
         }
       }
     }
