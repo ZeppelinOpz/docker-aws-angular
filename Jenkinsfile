@@ -1,6 +1,5 @@
 pipeline {
   agent any
-  stages {
     docker.image('docker/compose:1.21.0').inside {
 
       stage('Checkout') {
@@ -20,5 +19,4 @@ pipeline {
         }
       }
     }
-  }
 }
