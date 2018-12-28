@@ -1,5 +1,5 @@
 pipeline {
-  agent { docker { image 'docker/compose:latest' } }
+  agent { docker { image 'docker/compose' } }
   stages {
     stage('Checkout') {
       steps {
