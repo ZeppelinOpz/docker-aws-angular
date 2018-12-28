@@ -8,7 +8,8 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {     
+        withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {  
+          sh 'sleep 1m'   
           sh 'docker-compose up --build'
           sh 'docker tag aws-angular:10 zeppelinops/aws-angular:latest'
           sh 'docker tag aws-angular:10 zeppelinops/aws-angular:10'
