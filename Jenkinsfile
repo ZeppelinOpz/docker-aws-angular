@@ -1,11 +1,5 @@
 pipeline {
- agent {
-        docker { 
-          image 'docker/compose:1.21.0'
-          args  '--entrypoint /bin/sh'
-       }
-
-}
+ agent any
   stages {
     stage('Checkout') {
       steps {
@@ -13,6 +7,11 @@ pipeline {
       }
     }
     stage('Build') {
+      agent {
+        docker { 
+          image 'docker/compose:1.21.0'        
+       }
+      }
       steps {       
           sh 'docker-compose up --build'
           sh 'docker tag aws-angular:10 zeppelinops/aws-angular:latest'
