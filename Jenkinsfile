@@ -1,5 +1,10 @@
 pipeline {
-  agent { docker { image 'alpine:3.8' } }
+  agent { 
+    docker { 
+      image 'alpine:3.8'
+      args '--entrypoint "/bin/sh"'
+    }
+  }
   stages {
     stage('Checkout') {
       steps {
