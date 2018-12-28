@@ -7,7 +7,6 @@ pipeline {
       }
     }
     stage('Build') {
-      def GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
       steps {
         withDockerRegistry(credentialsId: 'docker-hub', url: 'http://hub.docker.com/u/zeppelinops') {
           sh 'docker-compose up --build'
