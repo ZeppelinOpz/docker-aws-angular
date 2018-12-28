@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        docker.withRegistry('', 'docker-hub') {
+        withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
           sh 'docker-compose up --build'
           sh 'docker tag aws-angular:10 ugurkavcu/aws-angular:latest'
           sh 'docker tag aws-angular:10 ugurkavcu/aws-angular:10'
