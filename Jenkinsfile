@@ -10,7 +10,7 @@ pipeline {
             steps {
                sh 'docker build . -t angular'
 
-               withDockerRegistry([ credentialsId: "docker-hub"]) {
+               withDockerRegistry([ credentialsId: "docker-hub", url: "http://hub.docker.com/u/zeppelinops" ]) {
                  sh 'docker-compose up --build'
                  sh 'docker tag aws-angular:10 ZeppelinOps/aws-angular:latest'
                  sh 'docker tag aws-angular:10 ZeppelinOps/aws-angular:10'
