@@ -1,5 +1,5 @@
 node {    
-    docker.image('docker/compose:1.21.0').withRun('--cmd cat') { c ->
+    docker.image('docker/compose:1.21.0').withRun('--entrypoint /bin/sh') { c ->
       checkout scm  
       withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1') {
             sh 'docker-compose up --build'
