@@ -1,12 +1,21 @@
 pipeline {
-  agent { 
-    docker { 
-      image 'docker/compose:1.21.0'
-      args '--entrypoint=""'
-    }
-  }
+  agent any
   stages {
     stage('Build') {
+      steps {
+        script {
+          def GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+          sh "echo ${GIT_COMMIT}"
+        }       
+      }
+    }
+    stage('Build') {
+      agent { 
+        docker { 
+          image 'docker/compose:1.21.0'
+          args '--entrypoint=""'
+        }
+      }
       steps {
         script {
           def GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
