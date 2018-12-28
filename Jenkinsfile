@@ -1,22 +1,16 @@
 pipeline {
- agent any
-  stages {
-    stage('Checkout') {
-      steps {
-        checkout scm
-      }
+    agent {
+        docker { image 'node:7-alpine' }
     }
-    stage('Build') {
-      agent {
-        docker { 
-          image 'docker/compose:1.21.0'        
-       }
-      }
-      steps {       
-          sh 'docker-compose up --build'
-          sh 'docker tag aws-angular:10 zeppelinops/aws-angular:latest'
-          sh 'docker tag aws-angular:10 zeppelinops/aws-angular:10'       
-      }
+    stages {
+        stage('Test') {
+            steps {
+                checkout scm
+                sh 'node --version'
+                sh 'pwd'
+                sh 'ls'
+                sh 'docker-compose up --build'
+            }
+        }
     }
-  }
 }
